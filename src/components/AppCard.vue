@@ -10,9 +10,19 @@ export default {
 
 <template>
   <div class="card">
-    <img src="" alt="" />
-    <h4>CARTA</h4>
+    <img :src="image[0].image_url" alt="" />
+    <div class="info">
+      <h4>{{ name }}</h4>
+      <h5>{{ type }}</h5>
+    </div>
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+</style>

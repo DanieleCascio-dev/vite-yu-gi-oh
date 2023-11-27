@@ -15,7 +15,11 @@ export default {
   <div class="container">
     <div class="row">
       <div class="col" v-for="card in store.cardList">
-        <AppCard />
+        <AppCard
+          :image="card.card_images"
+          :name="card.name"
+          :type="card.type"
+        />
       </div>
     </div>
   </div>
@@ -35,7 +39,7 @@ export default {
     flex-wrap: wrap;
     gap: 0.5rem;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
 
     .col {
       width: calc(100% / 5 - 0.5rem);
