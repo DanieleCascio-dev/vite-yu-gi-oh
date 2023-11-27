@@ -15,9 +15,9 @@ export default {
     axios
       .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0")
       .then((resp) => {
-        console.log(resp.data.data);
+        this.store.loader = true;
         this.store.cardList = resp.data.data;
-        console.log(this.store.cardList);
+        this.store.loader = false;
       });
   },
 };

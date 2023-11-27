@@ -14,7 +14,8 @@ export default {
 <template>
   <div class="container">
     <div class="row">
-      <div class="col" v-for="card in store.cardList">
+      <div v-if="this.store.loader">Loading....</div>
+      <div class="col" v-for="card in store.cardList" v-else>
         <AppCard
           :image="card.card_images"
           :name="card.name"
@@ -37,12 +38,12 @@ export default {
   .row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 1rem;
     justify-content: center;
     align-items: stretch;
 
     .col {
-      width: calc(100% / 5 - 0.5rem);
+      width: calc(100% / 5 - 1rem);
     }
   }
 }
