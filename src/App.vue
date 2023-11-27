@@ -1,12 +1,31 @@
 <script>
+import AppContent from "./components/AppContent.vue";
 import AppHeader from "./components/AppHeader.vue";
+import axios from "axios";
+import { store } from "./store.js";
+import { registerRuntimeHelpers } from "@vue/compiler-core";
 export default {
-  components: { AppHeader },
+  components: { AppHeader, AppContent },
+  data() {
+    return {
+      store,
+    };
+  },
+  created() {
+    axios
+      .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0")
+      .then((resp) => {
+        console.log(resp.data.data);
+        this.store.cardList = resp.data.data;
+        console.log(this.store.cardList);
+      });
+  },
 };
 </script>
 
 <template>
   <AppHeader />
+  <AppContent />
 </template>
 
 <style lang="scss">
