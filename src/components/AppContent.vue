@@ -6,13 +6,14 @@ export default {
   data() {
     return {
       store,
-      listContent: "",
+      pageIndex: 1,
     };
   },
   components: { AppCard },
   methods: {
     nextPage() {
       this.store.cardIndex += 20;
+      this.pageIndex++;
 
       axios
         .get(
@@ -30,6 +31,7 @@ export default {
         return;
       } else {
         this.store.cardIndex -= 20;
+        this.pageIndex--;
         axios
           .get(
             `https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=${this.store.cardIndex}`
@@ -50,6 +52,7 @@ export default {
   <div class="container">
     <div class="buttons">
       <button @click="prevPage">Prev</button>
+      <div class="pageIndex">{{ pageIndex }}</div>
       <button @click="nextPage">Next</button>
     </div>
     <div class="row">
@@ -64,6 +67,7 @@ export default {
     </div>
     <div class="buttons">
       <button @click="prevPage">Prev</button>
+      <div class="pageIndex">{{ pageIndex }}</div>
       <button @click="nextPage">Next</button>
     </div>
   </div>
