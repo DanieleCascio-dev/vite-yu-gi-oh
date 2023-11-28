@@ -2,5 +2,6 @@ import { reactive } from "vue";
 
 export const store = reactive({
   cardList: [],
-  loader: false,
+  loader: true,
+  cardIndex: 20,
 });

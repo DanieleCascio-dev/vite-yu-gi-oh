@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    image: String,
+    image: Array,
     name: String,
     type: String,
   },
@@ -13,7 +13,7 @@ export default {
     <img :src="image[0].image_url" alt="" />
     <div class="info">
       <h5>{{ name }}</h5>
-      <p>{{ type }}</p>
+      <p>{{ type ? type : "Nessun archetipo" }}</p>
     </div>
   </div>
 </template>
