@@ -14,11 +14,11 @@ export default {
     nextPage() {
       this.store.cardIndex += 20;
       this.pageIndex++;
-
+      //New axios syntax
       axios
-        .get(
-          `https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=${this.store.cardIndex}`
-        )
+        .get(" https://db.ygoprodeck.com/api/v7/cardinfo.php", {
+          params: { num: 20, offset: this.store.cardIndex },
+        })
         .then((resp) => {
           this.store.loader = true;
           this.store.cardList = resp.data.data;

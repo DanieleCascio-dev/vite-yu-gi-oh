@@ -14,7 +14,7 @@ export default {
   created() {
     axios
       .get(
-        `https://db.ygoprodeck.com/api/v7/cardinfo.php?num=${this.store.cardIndex}&offset=0`
+        `https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=${this.store.cardIndex}`
       )
       .then((resp) => {
         this.store.loader = true;
