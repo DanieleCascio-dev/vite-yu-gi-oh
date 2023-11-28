@@ -5,6 +5,11 @@ export default {
     name: String,
     type: String,
   },
+  computed: {
+    archetype() {
+      return this.type ? this.type : "Nessun archetipo";
+    },
+  },
 };
 </script>
 
@@ -13,7 +18,7 @@ export default {
     <img :src="image[0].image_url" alt="" />
     <div class="info">
       <h5>{{ name }}</h5>
-      <p>{{ type ? type : "Nessun archetipo" }}</p>
+      <p>{{ archetype }}</p>
     </div>
   </div>
 </template>

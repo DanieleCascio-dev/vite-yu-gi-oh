@@ -48,6 +48,10 @@ export default {
 
 <template>
   <div class="container">
+    <div class="buttons">
+      <button @click="prevPage">Prev</button>
+      <button @click="nextPage">Next</button>
+    </div>
     <div class="row">
       <div v-if="this.store.loader">Loading....</div>
       <div class="col" v-for="card in store.cardList" v-else>
@@ -57,6 +61,8 @@ export default {
           :type="card.archetype"
         />
       </div>
+    </div>
+    <div class="buttons">
       <button @click="prevPage">Prev</button>
       <button @click="nextPage">Next</button>
     </div>
@@ -71,6 +77,14 @@ export default {
   background-color: white;
   min-height: 500px;
   padding: 3rem;
+
+  .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
 
   .row {
     display: flex;
