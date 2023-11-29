@@ -1,5 +1,6 @@
 <script>
 import AppCard from "./AppCard.vue";
+import AppFilter from "./AppFilter.vue";
 import { store } from "../store.js";
 import axios from "axios";
 export default {
@@ -9,7 +10,7 @@ export default {
       pageIndex: 1,
     };
   },
-  components: { AppCard },
+  components: { AppCard, AppFilter },
   methods: {
     nextPage() {
       this.store.cardIndex += 20;
@@ -44,6 +45,22 @@ export default {
           });
       }
     },
+    startSearch() {
+      axios
+        .get("https://db.ygoprodeck.com/api/v7/cardinfo.php", {
+          params: {
+            num: 20,
+            archetype: this.store.searchFilter,
+            offset: this.store.cardIndex,
+          },
+        })
+        .then((resp) => {
+          this.store.loader = true;
+          this.store.cardList = resp.data.data;
+          this.store.loader = false;
+          console.log(this.store.cardList);
+        });
+    },
   },
 };
 </script>
@@ -55,6 +72,7 @@ export default {
       <div class="pageIndex">{{ pageIndex }}</div>
       <button @click="nextPage">Next</button>
     </div>
+    <AppFilter @filter="startSearch()" />
     <div class="row">
       <div v-if="this.store.loader">Loading....</div>
       <div class="col" v-for="card in store.cardList" v-else>
