@@ -50,15 +50,16 @@ export default {
         .get("https://db.ygoprodeck.com/api/v7/cardinfo.php", {
           params: {
             num: 20,
-            archetype: this.store.searchFilter,
-            offset: this.store.cardIndex,
+            archetype:
+              this.store.searchFilter != "" ? this.store.searchFilter : null,
+            offset: 0,
           },
         })
         .then((resp) => {
           this.store.loader = true;
           this.store.cardList = resp.data.data;
           this.store.loader = false;
-          console.log(this.store.cardList);
+          console.log(resp);
         });
     },
   },
