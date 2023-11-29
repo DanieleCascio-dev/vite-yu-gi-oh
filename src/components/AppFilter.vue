@@ -24,6 +24,7 @@ export default {
     <option value="Alien">Alien</option>
     <option value="Ally of justice">Ally of justice</option>
     <option value="Ancient Gear">Ancient Gear</option>
+    <option value="Noble Knight">Noble Knight</option>
   </select>
 </template>
 

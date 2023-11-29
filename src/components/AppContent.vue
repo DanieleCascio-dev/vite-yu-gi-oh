@@ -8,6 +8,7 @@ export default {
     return {
       store,
       pageIndex: 1,
+      cardNumber: false,
     };
   },
   components: { AppCard, AppFilter },
@@ -46,6 +47,11 @@ export default {
       }
     },
     startSearch() {
+      if (this.store.searchFilter != "") {
+        this.cardNumber = true;
+      } else {
+        this.cardNumber = false;
+      }
       axios
         .get("https://db.ygoprodeck.com/api/v7/cardinfo.php", {
           params: {
@@ -74,6 +80,9 @@ export default {
       <button @click="nextPage">Next</button>
     </div>
     <AppFilter @filter="startSearch()" />
+    <div class="card-number" v-show="cardNumber">
+      {{ this.store.cardList.length }} carte trovate
+    </div>
     <div class="row">
       <div v-if="this.store.loader">Loading....</div>
       <div class="col" v-for="card in store.cardList" v-else>
@@ -100,6 +109,12 @@ export default {
   background-color: white;
   min-height: 500px;
   padding: 3rem;
+
+  .card-number {
+    display: inline-block;
+    background-color: black;
+    color: white;
+  }
 
   .buttons {
     width: 100%;
